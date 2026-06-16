@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cosmic Hand Portal AR</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- MediaPipe -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+
+</head>
+
+<body>
+
+<!-- ================= CAMERA (FACE ALWAYS VISIBLE) ================= -->
+<video class="input_video" autoplay playsinline></video>
+
+<!-- ================= BACKGROUND ================= -->
+<canvas id="bgCanvas"></canvas>
+
+<!-- ================= EFFECTS ================= -->
+<canvas id="effectCanvas"></canvas>
+
+<!-- ================= LOADING ================= -->
+<div id="loadingScreen">
+
+    <div class="logo-circle"></div>
+
+    <h1>COSMIC HAND PORTAL</h1>
+
+    <p>AI Hand Tracking AR Experience</p>
+
+    <button id="startBtn">ENTER PORTAL</button>
+
+</div>
+
+<!-- ================= HUD ================= -->
+<div id="hud">
+
+    <div class="panel">
+
+        <h3>SYSTEM</h3>
+
+        <div class="row">
+            <span>FPS</span>
+            <span id="fps">0</span>
+        </div>
+
+        <div class="row">
+            <span>Hands</span>
+            <span id="handsCount">0</span>
+        </div>
+
+    </div>
+
+    <div class="panel">
+
+        <h3>GESTURE</h3>
+
+        <div class="row">
+            <span>Status</span>
+            <span id="gestureName">None</span>
+        </div>
+
+        <div class="row">
+            <span>Energy</span>
+            <span id="energyValue">0%</span>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= THEME ================= -->
+<div id="themes">
+
+<button class="theme active" data-theme="cosmic">Cosmic</button>
+<button class="theme" data-theme="ice">Ice</button>
+<button class="theme" data-theme="fire">Fire</button>
+<button class="theme" data-theme="matrix">Matrix</button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
