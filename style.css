@@ -1,3 +1,4 @@
+/* ================= RESET ================= */
 * {
 margin: 0;
 padding: 0;
@@ -9,10 +10,10 @@ width: 100%;
 height: 100vh;
 overflow: hidden;
 background: #04060f;
-font-family: sans-serif;
+font-family: Arial, sans-serif;
 }
 
-/* ================= CAMERA ================= */
+/* ================= CAMERA (FACE ALWAYS VISIBLE) ================= */
 .input_video {
 position: absolute;
 inset: 0;
@@ -20,54 +21,80 @@ width: 100%;
 height: 100%;
 object-fit: cover;
 
+/* mirror effect */
 transform: scaleX(-1);
 
 z-index: 0;
 
-opacity: 1; /* IMPORTANT */
+/* IMPORTANT: face visible */
+opacity: 1 !important;
+
+background: black;
 }
 
-/* ================= BACKGROUND ================= */
+/* ================= BACKGROUND CANVAS ================= */
 #bgCanvas {
 position: absolute;
 inset: 0;
 width: 100%;
 height: 100%;
 z-index: 1;
+
+/* match camera mirror */
 transform: scaleX(-1);
 }
 
-/* ================= EFFECTS ================= */
+/* ================= EFFECT CANVAS ================= */
 #effectCanvas {
 position: absolute;
 inset: 0;
 width: 100%;
 height: 100%;
 z-index: 2;
+
 pointer-events: none;
+
+/* match camera mirror */
 transform: scaleX(-1);
 }
 
-/* ================= LOADING ================= */
+/* ================= LOADING SCREEN ================= */
 #loadingScreen {
 position: absolute;
 inset: 0;
 z-index: 100;
+
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-background: rgba(0,0,0,0.85);
+
+background: rgba(0, 0, 0, 0.85);
 color: white;
+}
+
+#loadingScreen h1 {
+font-size: 2rem;
+margin-bottom: 10px;
+text-align: center;
+}
+
+#loadingScreen p {
+color: #aaa;
+margin-bottom: 20px;
 }
 
 #startBtn {
 padding: 14px 30px;
 border: none;
 border-radius: 30px;
+
+cursor: pointer;
+
 background: linear-gradient(45deg, #7f5cff, #00d9ff);
 color: white;
-cursor: pointer;
+
+font-weight: bold;
 }
 
 /* ================= HUD ================= */
@@ -76,37 +103,75 @@ position: absolute;
 top: 20px;
 left: 20px;
 z-index: 10;
+
 color: white;
+display: none;
+}
+
+#hud.show {
+display: block;
 }
 
 .panel {
-background: rgba(255,255,255,0.08);
-padding: 15px;
+background: rgba(255, 255, 255, 0.08);
+padding: 12px;
 margin-bottom: 10px;
 border-radius: 10px;
+
 backdrop-filter: blur(10px);
 }
 
-/* ================= THEME ================= */
+.panel h3 {
+margin-bottom: 10px;
+color: #00d9ff;
+}
+
+/* ================= ROW ================= */
+.row {
+display: flex;
+justify-content: space-between;
+margin: 5px 0;
+}
+
+/* ================= THEMES ================= */
 #themes {
 position: absolute;
 bottom: 20px;
 left: 50%;
 transform: translateX(-50%);
 z-index: 10;
-display: flex;
+
+display: none;
 gap: 10px;
 }
 
+#themes.show {
+display: flex;
+}
+
 .theme {
-padding: 8px 15px;
+padding: 8px 14px;
 border-radius: 20px;
 border: none;
 cursor: pointer;
-background: rgba(255,255,255,0.1);
+
+background: rgba(255, 255, 255, 0.1);
 color: white;
 }
 
 .theme.active {
-background: rgba(255,255,255,0.3);
+background: rgba(255, 255, 255, 0.3);
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+#loadingScreen h1 {
+    font-size: 1.5rem;
+}
+
+.panel {
+    font-size: 12px;
+}
+
 }
