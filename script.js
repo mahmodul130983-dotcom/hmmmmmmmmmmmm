@@ -204,7 +204,22 @@ function initAudio() {
 // =======================================
 
 let hands;
+async function startCamera() {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: "user" },
+            audio: false
+        });
 
+        videoElement.srcObject = stream;
+        await videoElement.play();
+
+        console.log("Camera Started");
+
+    } catch (err) {
+        console.error(err);
+    }
+}
 async function initHandTracking() {
 
     hands = new Hands({
@@ -282,20 +297,15 @@ startBtn.addEventListener("click", async () => {
 
     loadingScreen.style.display = "none";
 
-    document
-        .getElementById("hud")
-        .classList.add("show");
-
-    document
-        .getElementById("themes")
-        .classList.add("show");
+    document.getElementById("hud").classList.add("show");
+    document.getElementById("themes").classList.add("show");
 
     initAudio();
 
+    await startCamera(); 
     await initHandTracking();
 
 });
-
 let currentGesture = "None";
 
 let pinchActive = false;
